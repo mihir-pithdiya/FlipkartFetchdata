@@ -4,17 +4,16 @@ from selenium.webdriver.chrome.service import Service
 import pandas as pd
 import time
 
-# Step 1: Set up ChromeDriver path
 driver_path = r"C:\Users\mihir\Downloads\chromedriver-win64\chromedriver.exe"
 service = Service(driver_path)
 driver = webdriver.Chrome(service=service)
 
-# Step 2: Open Flipkart Search Page
+
 url = "https://www.flipkart.com/search?q=watches+for+man+under+2000&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off&p%5B%5D=facets.availability%255B%255D%3DInclude%2BOut%2Bof%2BStock"
 driver.get(url)
 time.sleep(2)
 
-# Step 3: Collect data
+
 brandnames = []
 names = []
 prices = []
@@ -42,7 +41,6 @@ for product in products:
     except:
         continue
 
-# Step 4: Save to Excel
 df = pd.DataFrame({
     "Brand": brandnames,
     "Product Name": names,
@@ -51,7 +49,7 @@ df = pd.DataFrame({
 })
 df.to_excel("watches.xlsx", index=False)
 
-# Step 5: Close browser
+
 driver.quit()
 
-print("✅ Excel file watches.xlsx created successfully!")
+print("Excel file watches.xlsx created successfully!")
